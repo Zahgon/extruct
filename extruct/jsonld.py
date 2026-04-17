@@ -33,16 +33,4 @@ class JsonLdExtractor:
         ]
 
     def _extract_items(self, node):
-        script = node.xpath("string()").strip()
-        if not script:
-            return
-        try:
-            # TODO: `strict=False` can be configurable if needed
-            data = json.loads(script, strict=False)
-        except ValueError:
-            # sometimes JSON-decoding errors are due to leading HTML or JavaScript comments
-            data = jstyleson.loads(HTML_OR_JS_COMMENTLINE.sub("", script), strict=False)
-        if isinstance(data, list):
-            yield from data
-        elif isinstance(data, dict):
-            yield data
+        pass
